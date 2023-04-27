@@ -8,5 +8,9 @@ export async function getSession() {
 export async function getCurrentUser() {
   const session = await getSession()
 
-  return session?.user
+  return {
+    ...session?.user,
+    name: session?.user?.name ?? null,
+    image: session?.user?.image ?? null,
+  }
 }

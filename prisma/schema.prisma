@@ -45,8 +45,8 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
+  name          String    @default(cuid())
+  email         String   @unique
   emailVerified DateTime? @map(name: "email_verified")
   image         String?
   eloRating     Float     @default(1500) @map(name: "elo_rating")

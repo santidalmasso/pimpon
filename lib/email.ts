@@ -6,27 +6,26 @@ type EmailMessage = {
   subject: string
   text: string
   html?: string | null
+  template?: {
+    data: {
+      signInURL: string
+    }
+    id: string
+  }
 }
 
-async function sendEmail({to, from, subject, text, html}: EmailMessage) {
-  html = text
-
+async function sendEmail({to, from, subject, template}: EmailMessage) {
   const body = JSON.stringify({
+    ...(template ? {template_id: template.id} : {}),
     personalizations: [
       {
         to: [
           {
             email: to,
-            // name: 'John Doe',
           },
         ],
         subject,
-      },
-    ],
-    content: [
-      {
-        type: 'text/plain',
-        value: text,
+        ...(template ? {dynamic_template_data: template.data} : {}),
       },
     ],
     from: {

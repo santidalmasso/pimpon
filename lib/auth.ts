@@ -5,7 +5,6 @@ import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import {sendEmail} from '~/lib/email'
 
-import {siteConfig} from '~/config/site'
 import {db} from '~/lib/db'
 
 export const authOptions: NextAuthOptions = {
@@ -46,15 +45,25 @@ export const authOptions: NextAuthOptions = {
           },
         })
 
-        // if (!templateId) {
-        //   throw new Error('Missing template id')
-        // }
+        const templateId = user?.emailVerified
+          ? process.env.EMAIL_SIGN_IN_TEMPLATE_ID
+          : process.env.EMAIL_ACTIVATION_TEMPLATE
+
+        if (!templateId) {
+          throw new Error('Missing template id')
+        }
 
         const result = await sendEmail({
           to: identifier,
           from: 'no_reply@santid.me',
           subject: 'Sign in to PinPon',
           text: `Login ${url}`,
+          template: {
+            id: templateId,
+            data: {
+              signInURL: url,
+            },
+          },
         })
       },
     }),
@@ -63,7 +72,7 @@ export const authOptions: NextAuthOptions = {
     async session({token, session}) {
       if (token) {
         session.user.id = token.id
-        session.user.name = token.name ?? token.email
+        session.user.name = token.name
         session.user.email = token.email
         session.user.image = token.picture
       }
@@ -90,6 +99,20 @@ export const authOptions: NextAuthOptions = {
         email: dbUser.email,
         picture: dbUser.image,
       }
+    },
+    async signIn({user}) {
+      if (!user.name) {
+        await db.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            name: user.email,
+          },
+        })
+      }
+
+      return true
     },
   },
 }
