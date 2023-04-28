@@ -29,6 +29,6 @@ export async function GET() {
         matches: player._count.matches,
         position: index + 1,
       }))
-      .filter(player => player.matches < 5),
+      .filter(player => player.matches > 5),
   )
 }
