@@ -38,7 +38,7 @@ const MatchPlayer = ({className, name}: MatchPlayerProps) => {
           user={player ?? {name: '', image: null}}
           className="w-8 h-8"
         />
-        <Combobox as="div" onChange={handleSelect}>
+        <Combobox as="div" onChange={handleSelect} className="w-full">
           <ComboboxInput
             onChange={(event: any) => setQuery(event.target.value)}
             displayValue={(player: Player) => player.name}

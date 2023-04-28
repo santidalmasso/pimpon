@@ -72,7 +72,7 @@ export function CreateSinglesMatchForm({
     <div className={cn('grid gap-6', className)} {...props}>
       <FormProvider {...methods}>
         <form className="grid gap-6" onSubmit={methods.handleSubmit(onSubmit)}>
-          <div className="grid grid-cols-2 gap-10 place-content-center">
+          <div className="grid grid-cols-1 gap-6 md:gap-10 sm:grid-cols-2 place-content-center">
             <Card className="flex flex-col gap-4 p-4">
               <MatchPlayer name="player1" />
               <Label className="sr-only" htmlFor="team-a-points">

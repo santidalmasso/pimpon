@@ -31,7 +31,7 @@ export default function RegisterPage() {
         />
       </div>
       <div className="lg:p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px] px-10 md:px-0">
           <div className="flex flex-col space-y-2 text-center">
             <Icons.logo className="w-10 h-10 mx-auto" />
             <h1 className="text-2xl font-semibold tracking-tight">

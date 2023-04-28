@@ -25,7 +25,7 @@ export default function LoginPage() {
           Back
         </>
       </Link>
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+      <div className="mx-auto flex w-full px-10 md:px-0 flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
           <Icons.logo className="w-20 h-20 mx-auto mb-4" />
           <h1 className="text-2xl font-semibold tracking-tight">
