@@ -98,7 +98,7 @@ export async function POST(
     })
 
     const updatePlayer3 = teamA[1]
-      ? await db.user.updateMany({
+      ? db.user.updateMany({
           where: {
             id: teamA[1].userId,
           },
@@ -109,7 +109,7 @@ export async function POST(
       : null
 
     const updatePlayer4 = teamB[1]
-      ? await db.user.updateMany({
+      ? db.user.updateMany({
           where: {
             id: teamB[1].userId,
           },

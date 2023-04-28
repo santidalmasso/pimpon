@@ -42,6 +42,8 @@ export const authOptions: NextAuthOptions = {
           },
           select: {
             emailVerified: true,
+            name: true,
+            email: true,
           },
         })
 
@@ -55,9 +57,8 @@ export const authOptions: NextAuthOptions = {
 
         const result = await sendEmail({
           to: identifier,
-          from: 'no_reply@santid.me',
+          from: 'pimponapp@gmail.com',
           subject: 'Sign in to PinPon',
-          text: `Login ${url}`,
           template: {
             id: templateId,
             data: {
@@ -65,6 +66,17 @@ export const authOptions: NextAuthOptions = {
             },
           },
         })
+
+        if (user && !user?.name && user.name) {
+          await db.user.update({
+            where: {
+              email: user.email!,
+            },
+            data: {
+              name: user.email!,
+            },
+          })
+        }
       },
     }),
   ],
@@ -102,14 +114,18 @@ export const authOptions: NextAuthOptions = {
     },
     async signIn({user}) {
       if (!user.name) {
-        await db.user.update({
-          where: {
-            id: user.id,
-          },
-          data: {
-            name: user.email!,
-          },
-        })
+        try {
+          await db.user.update({
+            where: {
+              email: user.email!,
+            },
+            data: {
+              name: user.email!,
+            },
+          })
+        } catch (e) {
+          return true
+        }
       }
 
       return true

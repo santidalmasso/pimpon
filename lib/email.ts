@@ -4,7 +4,7 @@ type EmailMessage = {
   to: string
   from: string
   subject: string
-  text: string
+  text?: string
   html?: string | null
   template?: {
     data: {
@@ -30,7 +30,7 @@ async function sendEmail({to, from, subject, template}: EmailMessage) {
     ],
     from: {
       email: from,
-      name: 'PinPon',
+      name: 'Pimpon App',
     },
   })
 
