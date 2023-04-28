@@ -59,7 +59,7 @@ const MatchPlayer = ({className, name}: MatchPlayerProps) => {
       </div>
       {errors?.[name] ? (
         <p role="alert" className="px-1 text-xs text-red-600">
-          {errors?.[name]?.message || 'Validation error'}
+          {String(errors?.[name]?.message)}
         </p>
       ) : null}
     </div>

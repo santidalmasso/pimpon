@@ -8,8 +8,8 @@ interface MatchItemProps {
 }
 
 export function MatchItem({match}: MatchItemProps) {
-  const player1 = match.players.find(player => player.team === 'TeamA')
-  const player2 = match.players.find(player => player.team === 'TeamB')
+  const player1 = match.players.find((player: any) => player.team === 'TeamA')
+  const player2 = match.players.find((player: any) => player.team === 'TeamB')
 
   return (
     <>

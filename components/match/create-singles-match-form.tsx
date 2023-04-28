@@ -7,7 +7,7 @@ import * as z from 'zod'
 import {cn} from '~/lib/utils'
 import {createMatchSchema} from '~/lib/validations/match'
 import {Label} from '~/components/ui/label'
-import {User} from '@prisma/client'
+import {User} from 'next-auth'
 import {Button, buttonVariants} from '~/components/ui/button'
 import {MatchPlayer} from '~/components/match/match-player'
 import {Card} from '~/components/ui/card'
@@ -120,13 +120,17 @@ export function CreateSinglesMatchForm({
               ) : null}
             </Card>
           </div>
-          {methods.formState.errors?.player1_score ||
-          methods.formState.errors?.player2_score ? (
-            <p role="alert" className="px-1 text-xs text-red-600">
-              Scores must follow ping-pong rules: A game must be won with at
-              least 21 points and a minimum 2-point lead
-            </p>
-          ) : null}
+          {
+            // @ts-expect-error type
+            methods.formState.errors?.player1_score ||
+            // @ts-expect-error type
+            methods.formState.errors?.player2_score ? (
+              <p role="alert" className="px-1 text-xs text-red-600">
+                Scores must follow ping-pong rules: A game must be won with at
+                least 21 points and a minimum 2-point lead
+              </p>
+            ) : null
+          }
           <button
             type="submit"
             className={cn(buttonVariants())}
