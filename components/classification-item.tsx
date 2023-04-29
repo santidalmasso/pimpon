@@ -36,7 +36,7 @@ export function ClassificationItem({user}: ClassificationItemProps) {
         </p>
         <p>
           <span className="font-medium text-slate-400">Elo:</span>{' '}
-          {user.eloRating}
+          {Math.round(user.eloRating)}
         </p>
       </div>
     </div>
