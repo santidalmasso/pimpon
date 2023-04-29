@@ -1,9 +1,10 @@
 import '~/styles/globals.css'
 import {Toaster} from '~/components/ui/toaster'
-import {cn} from '../lib/utils'
+import {cn} from '~/lib/utils'
 import {Inter} from 'next/font/google'
 import localFont from 'next/font/local'
-import {siteConfig} from '../config/site'
+import {siteConfig} from '~/config/site'
+import {Analytics} from '~/components/analytics'
 
 const fontSans = Inter({
   subsets: ['latin'],
@@ -53,6 +54,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       >
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   )
