@@ -21,6 +21,7 @@ export async function GET() {
 
   return NextResponse.json(
     players
+      .filter(player => player._count.matches > 5)
       .map((player, index) => ({
         id: player.id,
         name: player.name,
@@ -28,7 +29,6 @@ export async function GET() {
         image: player.image,
         matches: player._count.matches,
         position: index + 1,
-      }))
-      .filter(player => player.matches > 5),
+      })),
   )
 }
