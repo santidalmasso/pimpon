@@ -8,10 +8,10 @@ import {getTopPlayers} from '../../../services/player'
 import DashboardLoading from './loading'
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'Classification',
 }
 
-export default async function DashboardPage() {
+export default async function ClassificationPage() {
   const [me, topPlayers] = await Promise.all([
     getCurrentUser(),
     getTopPlayers(),

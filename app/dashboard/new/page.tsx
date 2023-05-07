@@ -8,10 +8,10 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '~/components/ui/tabs'
 import {CreateDoublesMatchForm} from '~/components/match/create-doubles-match-form'
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'New Match',
 }
 
-export default async function DashboardPage() {
+export default async function NewMatchPage() {
   const user = await getCurrentUser()
 
   if (!user) {

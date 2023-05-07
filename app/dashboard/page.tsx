@@ -10,7 +10,7 @@ import {getMatches} from '~/services/match'
 import {MatchItem} from '~/components/match/match-item'
 
 export const metadata = {
-  title: 'Dashboard',
+  title: 'Matches',
 }
 
 export default async function DashboardPage() {
